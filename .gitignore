@@ -1,0 +1,10 @@
+# Spring - Maven
+mvn*
+.mvn/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+target/
