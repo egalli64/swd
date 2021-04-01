@@ -47,7 +47,7 @@ create table teams(
     leader_id integer unique,
     client_id integer not null,
 
-    constraint teams_leader_fk foreign key(leader_id) references coders(coder_id),
+    constraint teams_leader_fk foreign key(leader_id) references coders(coder_id) on delete cascade,
     constraint teams_client_fk foreign key(client_id) references clients(client_id)
 );
 
@@ -61,8 +61,8 @@ create table team_coder(
     coder_id integer,
 
     constraint team_coder_pk primary key(team_id, coder_id),
-    constraint team_coder_fk foreign key(team_id) references teams(team_id),
-    constraint coder_team_fk foreign key(coder_id) references coders(coder_id)
+    constraint team_coder_fk foreign key(team_id) references teams(team_id) on delete cascade,
+    constraint coder_team_fk foreign key(coder_id) references coders(coder_id) on delete cascade
 );
 
 insert into team_coder values (1, 104);
