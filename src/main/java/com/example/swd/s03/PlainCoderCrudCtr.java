@@ -1,5 +1,6 @@
 package com.example.swd.s03;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,5 +118,28 @@ public class PlainCoderCrudCtr {
 
         model.addAttribute("message", "Can't delete coder " + id);
         return "/s03/result";
+    }
+
+    @GetMapping("/deleteSome")
+    public String deleteSome(@RequestParam List<Integer> ids, Model model) {
+        log.traceEntry("deleteSome");
+
+        List<Coder> coders = new ArrayList<Coder>();
+        ids.forEach(id -> repo.findById(id).ifPresent(coder -> coders.add(coder)));
+
+        repo.deleteAll(coders);
+
+        model.addAttribute("message", "To be deleted: " + coders);
+
+        return "/s03/result";
+    }
+
+    @GetMapping("/deleteAll")
+    public String deleteAll(Model model) {
+        log.traceEntry("deleteAll");
+
+        repo.deleteAll();
+
+        return "redirect:/s03/count";
     }
 }
