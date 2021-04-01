@@ -10,5 +10,8 @@
 <body>
     <h1>CRUD repository feedback</h1>
     <p>${message}</p>
+    <p>
+        Back <a href="/">home</a>
+    </p>
 </body>
 </html>
