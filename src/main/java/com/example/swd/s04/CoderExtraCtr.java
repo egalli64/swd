@@ -40,4 +40,15 @@ public class CoderExtraCtr {
 
         return "/s04/result";
     }
+
+    @GetMapping("/firstNameStartingLastNameContaining")
+    public String firstNameStartingLastNameContaining(@RequestParam String first, @RequestParam String last,
+            Model model) {
+        log.traceEntry("firstNameStartingLastNameContaining");
+
+        Iterable<Coder> coders = repo.findByFirstNameStartingWithOrLastNameContainingIgnoreCase(first, last);
+        model.addAttribute("message", "Found: " + coders);
+
+        return "/s04/result";
+    }
 }

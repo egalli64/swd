@@ -10,4 +10,6 @@ public interface CoderExtraRepo extends CrudRepository<Coder, Integer> {
     Iterable<Coder> findByFirstName(String name);
 
     Iterable<Coder> findByFirstNameStartingWith(String prefix);
+
+    Iterable<Coder> findByFirstNameStartingWithOrLastNameContainingIgnoreCase(String prefixFirst, String inLast);
 }
