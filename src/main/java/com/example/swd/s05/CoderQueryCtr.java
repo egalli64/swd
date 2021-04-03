@@ -31,6 +31,16 @@ public class CoderQueryCtr {
         return "/s05/result";
     }
 
+    @GetMapping("/bySalaryRangeNames")
+    public String bySalaryRangeNames(@RequestParam double low, @RequestParam double high, Model model) {
+        log.traceEntry("byFirstName");
+
+        Iterable<Coder> coders = repo.findBySalaryRangeNames(low, high);
+        model.addAttribute("message", "Found: " + coders);
+
+        return "/s05/result";
+    }
+
     @GetMapping("/withPrefix")
     public String withPrefix(@RequestParam String prefix, Model model) {
         log.traceEntry("withPrefix");
@@ -46,6 +56,16 @@ public class CoderQueryCtr {
         log.traceEntry("withInfix");
 
         Iterable<Coder> coders = repo.findByFirstNameIn(infix);
+        model.addAttribute("message", "Found: " + coders);
+
+        return "/s05/result";
+    }
+
+    @GetMapping("/bySalaryRangeNative")
+    public String bySalaryRangeNative(@RequestParam double low, @RequestParam double high, Model model) {
+        log.traceEntry("bySalaryRangeNative");
+
+        Iterable<Coder> coders = repo.findBySalaryRangeNative(low, high);
         model.addAttribute("message", "Found: " + coders);
 
         return "/s05/result";
