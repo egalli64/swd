@@ -1,4 +1,4 @@
-package com.example.swd.s04;
+package com.example.swd.s05;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

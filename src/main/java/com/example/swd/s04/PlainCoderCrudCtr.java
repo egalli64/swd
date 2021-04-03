@@ -1,4 +1,4 @@
-package com.example.swd.s03;
+package com.example.swd.s04;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.dao.Coder;
 
 @Controller
-@RequestMapping("/s03")
+@RequestMapping("/s04")
 public class PlainCoderCrudCtr {
     private static final Logger log = LogManager.getLogger(PlainCoderCrudCtr.class);
 
@@ -37,7 +37,7 @@ public class PlainCoderCrudCtr {
             model.addAttribute("message", "Coder _not_ created!");
         }
 
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/rename")
@@ -50,7 +50,7 @@ public class PlainCoderCrudCtr {
             model.addAttribute("message", "Saved: " + edited);
         }, () -> model.addAttribute("message", "No coder found with id " + id));
 
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/check")
@@ -59,7 +59,7 @@ public class PlainCoderCrudCtr {
 
         model.addAttribute("message", String.format("Coder %d %sfound", id, repo.existsById(id) ? "" : "NOT "));
 
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/all")
@@ -68,7 +68,7 @@ public class PlainCoderCrudCtr {
 
         model.addAttribute("message", "Found: " + repo.findAll());
 
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/some")
@@ -77,7 +77,7 @@ public class PlainCoderCrudCtr {
 
         model.addAttribute("message", "Found: " + repo.findAllById(ids));
 
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/count")
@@ -86,7 +86,7 @@ public class PlainCoderCrudCtr {
 
         model.addAttribute("message", String.format("Found %d coders", repo.count()));
 
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/deleteById")
@@ -95,10 +95,10 @@ public class PlainCoderCrudCtr {
 
         try {
             repo.deleteById(id);
-            return "redirect:/s03/check?id=" + id;
+            return "redirect:/s04/check?id=" + id;
         } catch (Exception ex) {
             model.addAttribute("message", "Can't delete coder " + id);
-            return "/s03/result";
+            return "/s04/result";
         }
     }
 
@@ -110,14 +110,14 @@ public class PlainCoderCrudCtr {
         if (opt.isPresent()) {
             try {
                 repo.delete(opt.get());
-                return "redirect:/s03/check";
+                return "redirect:/s04/check?id=" + id;
             } catch (Exception ex) {
                 log.warn("Can't delete coder " + id);
             }
         }
 
         model.addAttribute("message", "Can't delete coder " + id);
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/deleteSome")
@@ -131,7 +131,7 @@ public class PlainCoderCrudCtr {
 
         model.addAttribute("message", "To be deleted: " + coders);
 
-        return "/s03/result";
+        return "/s04/result";
     }
 
     @GetMapping("/deleteAll")
@@ -140,6 +140,6 @@ public class PlainCoderCrudCtr {
 
         repo.deleteAll();
 
-        return "redirect:/s03/count";
+        return "redirect:/s04/count";
     }
 }

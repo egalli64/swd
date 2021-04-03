@@ -1,4 +1,4 @@
-package com.example.swd.s05;
+package com.example.swd.s06;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.dao.Coder;
 
 @Controller
-@RequestMapping("/s05")
+@RequestMapping("/s06")
 public class CoderQueryCtr {
     private static final Logger log = LogManager.getLogger(CoderQueryCtr.class);
 
@@ -28,7 +28,7 @@ public class CoderQueryCtr {
         Iterable<Coder> coders = repo.findBySalaryRange(low, high);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 
     @GetMapping("/bySalaryRangeNames")
@@ -38,7 +38,7 @@ public class CoderQueryCtr {
         Iterable<Coder> coders = repo.findBySalaryRangeNames(low, high);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 
     @GetMapping("/withPrefix")
@@ -48,7 +48,7 @@ public class CoderQueryCtr {
         Iterable<Coder> coders = repo.findByFirstName(prefix);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 
     @GetMapping("/withInfix")
@@ -58,7 +58,7 @@ public class CoderQueryCtr {
         Iterable<Coder> coders = repo.findByFirstNameIn(infix);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 
     @GetMapping("/bySalaryRangeNative")
@@ -68,6 +68,6 @@ public class CoderQueryCtr {
         Iterable<Coder> coders = repo.findBySalaryRangeNative(low, high);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 }
