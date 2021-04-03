@@ -12,15 +12,14 @@
     <h2>CRUD Repository</h2>
     <ul>
         <li><a href="/s03/create">Create a new coder</a> (should have id 202)</li>
-        <li><a href="/s03/rename?id=202">Find a coder by id, change name, save</a> (202)</li>
-        <li><a href="/s03/check?id=202">Is there a coder with a given id?</a> (202)</li>
+        <li><a href="/s03/rename?id=202">Find coder 202, change name, save</a></li>
+        <li><a href="/s03/check?id=202">Is there coder 202?</a></li>
         <li><a href="/s03/all">All coders</a></li>
-        <li><a href="/s03/some?ids=103&ids=202">Coders with given ids</a> (103, 202)</li>
+        <li><a href="/s03/some?ids=103&ids=202">Coders 103, 202</a></li>
         <li><a href="/s03/count">Coders count</a></li>
-        <li><a href="/s03/deleteById?id=202">Remove a coder, then check if it exists</a> (202)</li>
-        <li><a href="/s03/delete?id=103">Get a coder, then remove it</a> (103)</li>
-        <li><a href="/s03/deleteSome?ids=103&ids=105">Get coders with given ids, then remove them</a>
-            (103, 105)</li>
+        <li><a href="/s03/deleteById?id=202">Remove coder 202, then check if it exists</a></li>
+        <li><a href="/s03/delete?id=103">Get coder 103, then remove it</a> (103)</li>
+        <li><a href="/s03/deleteSome?ids=103&ids=105">Get coders 103, 105, then remove them</a></li>
         <li><a href="/s03/deleteAll">Delete all coders, then count them</a></li>
     </ul>
 
@@ -28,7 +27,13 @@
     <ul>
         <li><a href="/s04/byFirstName?name=Diana">Coders with first name Diana</a></li>
         <li><a href="/s04/firstNameStarting?prefix=D">Coders with first name starting by D</a></li>
-        <li><a href="/s04/firstNameStartingLastNameContaining?first=D&last=i">First name starting by D or an i/I in the last name</a></li>
+        <li><a href="/s04/firstNameStartingLastNameContaining?first=D&last=i">First name starting by
+                D or an i/I in the last name</a></li>
+    </ul>
+
+    <h2>Query by annotation</h2>
+    <ul>
+        <li><a href="/s05/bySalaryRange?low=400&high=5000">Coders in salary range</a></li>
     </ul>
 </body>
 </html>
