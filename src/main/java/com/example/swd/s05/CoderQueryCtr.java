@@ -30,4 +30,24 @@ public class CoderQueryCtr {
 
         return "/s05/result";
     }
+
+    @GetMapping("/withPrefix")
+    public String withPrefix(@RequestParam String prefix, Model model) {
+        log.traceEntry("withPrefix");
+
+        Iterable<Coder> coders = repo.findByFirstName(prefix);
+        model.addAttribute("message", "Found: " + coders);
+
+        return "/s05/result";
+    }
+
+    @GetMapping("/withInfix")
+    public String withInfix(@RequestParam String infix, Model model) {
+        log.traceEntry("withInfix");
+
+        Iterable<Coder> coders = repo.findByFirstNameIn(infix);
+        model.addAttribute("message", "Found: " + coders);
+
+        return "/s05/result";
+    }
 }

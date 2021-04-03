@@ -10,4 +10,10 @@ import com.example.swd.dao.Coder;
 public interface CoderQueryRepo extends CrudRepository<Coder, Integer> {
     @Query("select c from Coder c where c.salary between ?1 and ?2 order by salary desc, hireDate desc")
     Iterable<Coder> findBySalaryRange(double low, double high);
+
+    @Query("select c from Coder c where c.firstName like ?1%")
+    Iterable<Coder> findByFirstName(String prefix);
+
+    @Query("select c from Coder c where c.firstName like %?1%")
+    Iterable<Coder> findByFirstNameIn(String infix);
 }
