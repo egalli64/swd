@@ -1,4 +1,4 @@
-package com.example.swd.s05;
+package com.example.swd.s06;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.dao.Coder;
 
 @Controller
-@RequestMapping("/s05")
+@RequestMapping("/s06")
 public class CoderExtraCtr {
     private static final Logger log = LogManager.getLogger(CoderExtraCtr.class);
 
@@ -28,7 +28,7 @@ public class CoderExtraCtr {
         Iterable<Coder> coders = repo.findByFirstName(name);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 
     @GetMapping("/firstNameStarting")
@@ -38,7 +38,7 @@ public class CoderExtraCtr {
         Iterable<Coder> coders = repo.findByFirstNameStartingWith(prefix);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 
     @GetMapping("/firstNameStartingLastNameContaining")
@@ -49,6 +49,6 @@ public class CoderExtraCtr {
         Iterable<Coder> coders = repo.findByFirstNameStartingWithOrLastNameContainingIgnoreCase(first, last);
         model.addAttribute("message", "Found: " + coders);
 
-        return "/s05/result";
+        return "/s06/result";
     }
 }

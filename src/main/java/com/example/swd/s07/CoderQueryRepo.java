@@ -1,4 +1,4 @@
-package com.example.swd.s06;
+package com.example.swd.s07;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
