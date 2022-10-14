@@ -12,43 +12,43 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.swd.dao.Coder;
+import com.example.swd.dao.Region;
 
 @Controller
 @RequestMapping("/s05")
-public class PlainCoderCrudCtr {
-    private static final Logger log = LogManager.getLogger(PlainCoderCrudCtr.class);
+public class PlainRegionCrudCtr {
+    private static final Logger log = LogManager.getLogger(PlainRegionCrudCtr.class);
 
-    private PlainCoderCrudRepo repo;
+    private PlainRegionCrudRepo repo;
 
-    public PlainCoderCrudCtr(PlainCoderCrudRepo repo) {
+    public PlainRegionCrudCtr(PlainRegionCrudRepo repo) {
         this.repo = repo;
     }
 
     @GetMapping("/create")
-    public String create(Model model) {
+    public String create(@RequestParam String name, Model model) {
         log.traceEntry("create");
 
         try {
-            Coder coder = repo.save(new Coder("Tom", "Slick", 1200));
-            model.addAttribute("message", "Created: " + coder);
+            Region entity = repo.save(new Region(name));
+            model.addAttribute("message", "Created: " + entity);
         } catch (Exception ex) {
-            log.warn("Can't persist Tom");
-            model.addAttribute("message", "Coder _not_ created!");
+            log.warn("Can't persist {}", name);
+            model.addAttribute("message", "Entity _not_ created!");
         }
 
         return "/s05/result";
     }
 
     @GetMapping("/rename")
-    public String rename(@RequestParam Integer id, Model model) {
+    public String rename(@RequestParam Integer id, @RequestParam String name, Model model) {
         log.traceEntry("rename");
 
-        repo.findById(id).ifPresentOrElse(coder -> {
-            coder.setFirstName(coder.getFirstName() + "e");
-            Coder edited = repo.save(coder);
+        repo.findById(id).ifPresentOrElse(entity -> {
+            entity.setName(name);
+            Region edited = repo.save(entity);
             model.addAttribute("message", "Saved: " + edited);
-        }, () -> model.addAttribute("message", "No coder found with id " + id));
+        }, () -> model.addAttribute("message", "No entity found with id " + id));
 
         return "/s05/result";
     }
@@ -57,7 +57,7 @@ public class PlainCoderCrudCtr {
     public String check(@RequestParam Integer id, Model model) {
         log.traceEntry("check");
 
-        model.addAttribute("message", String.format("Coder %d %sfound", id, repo.existsById(id) ? "" : "NOT "));
+        model.addAttribute("message", String.format("Entity %d %sfound", id, repo.existsById(id) ? "" : "NOT "));
 
         return "/s05/result";
     }
@@ -84,7 +84,7 @@ public class PlainCoderCrudCtr {
     public String count(Model model) {
         log.traceEntry("count");
 
-        model.addAttribute("message", String.format("Found %d coders", repo.count()));
+        model.addAttribute("message", String.format("Found %d entities", repo.count()));
 
         return "/s05/result";
     }
@@ -97,7 +97,7 @@ public class PlainCoderCrudCtr {
             repo.deleteById(id);
             return "redirect:/s05/check?id=" + id;
         } catch (Exception ex) {
-            model.addAttribute("message", "Can't delete coder " + id);
+            model.addAttribute("message", "Can't delete entity " + id);
             return "/s05/result";
         }
     }
@@ -106,17 +106,17 @@ public class PlainCoderCrudCtr {
     public String delete(@RequestParam Integer id, Model model) {
         log.traceEntry("delete");
 
-        Optional<Coder> opt = repo.findById(id);
+        Optional<Region> opt = repo.findById(id);
         if (opt.isPresent()) {
             try {
                 repo.delete(opt.get());
                 return "redirect:/s05/check?id=" + id;
             } catch (Exception ex) {
-                log.warn("Can't delete coder " + id);
+                log.warn("Can't delete entity " + id);
             }
         }
 
-        model.addAttribute("message", "Can't delete coder " + id);
+        model.addAttribute("message", "Can't delete entity " + id);
         return "/s05/result";
     }
 
@@ -124,12 +124,12 @@ public class PlainCoderCrudCtr {
     public String deleteSome(@RequestParam List<Integer> ids, Model model) {
         log.traceEntry("deleteSome");
 
-        List<Coder> coders = new ArrayList<Coder>();
-        ids.forEach(id -> repo.findById(id).ifPresent(coder -> coders.add(coder)));
+        List<Region> regions = new ArrayList<>();
+        ids.forEach(id -> repo.findById(id).ifPresent(entity -> regions.add(entity)));
 
-        repo.deleteAll(coders);
+        repo.deleteAll(regions);
 
-        model.addAttribute("message", "To be deleted: " + coders);
+        model.addAttribute("message", "To be deleted: " + regions);
 
         return "/s05/result";
     }
