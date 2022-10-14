@@ -8,23 +8,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class CoderCtorCtrl {
-    private static final Logger log = LogManager.getLogger(CoderCtorCtrl.class);
+public class RegionCtorCtrl {
+    private static final Logger log = LogManager.getLogger(RegionCtorCtrl.class);
 
-    private CoderRepo repo;
+    private RegionRepo repo;
 
     @Autowired
-    public CoderCtorCtrl(CoderRepo repo) {
+    public RegionCtorCtrl(RegionRepo repo) {
         this.repo = repo;
     }
 
     // more than a ctor, the one that should be used by Spring should be autowired
-    public CoderCtorCtrl(CoderRepo repo, String message) {
+    public RegionCtorCtrl(RegionRepo repo, String message) {
         log.info(message);
         this.repo = repo;
     }
 
-    @GetMapping("/s04c/coders")
+    @GetMapping("/s04c/region/all")
     public String getAll(Model model) {
         log.traceEntry("getAll");
 

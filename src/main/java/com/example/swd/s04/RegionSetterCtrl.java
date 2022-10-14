@@ -8,13 +8,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class CoderPropertyCtrl {
-    private static final Logger log = LogManager.getLogger(CoderPropertyCtrl.class);
+public class RegionSetterCtrl {
+    private static final Logger log = LogManager.getLogger(RegionSetterCtrl.class);
+
+    private RegionRepo repo;
 
     @Autowired
-    private CoderRepo repo;
+    public void setRepo(RegionRepo repo) {
+        this.repo = repo;
+    }
 
-    @GetMapping("/s04p/coders")
+    @GetMapping("/s04s/region/all")
     public String getAll(Model model) {
         log.traceEntry("getAll");
 

@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.swd.s05.PlainCoderCrudRepo;
+import com.example.swd.s04.RegionRepo;
 
 @SpringBootApplication
 public class SwdApplication {
@@ -18,7 +18,7 @@ public class SwdApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(PlainCoderCrudRepo repository) {
-        return args -> repository.findAll().forEach(coder -> log.info(coder.toString()));
+    public CommandLineRunner demo(RegionRepo repository) {
+        return args -> repository.findAll().forEach(region -> log.info(region.toString()));
     }
 }
