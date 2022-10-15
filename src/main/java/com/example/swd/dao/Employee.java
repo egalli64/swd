@@ -8,26 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "CODERS")
-public class Coder {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CODER_ID")
+    @Column(name = "EMPLOYEE_ID")
     private Integer id;
 
     private String firstName;
     private String lastName;
 
-    private LocalDate hireDate;
+    private LocalDate hired;
     private double salary;
 
-    public Coder() {
+    public Employee() {
     }
 
-    public Coder(String firstName, String lastName, double salary) {
+    public Employee(String firstName, String lastName, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
@@ -57,18 +55,18 @@ public class Coder {
         this.lastName = lastName;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
+    public LocalDate getHired() {
+        return hired;
     }
 
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
+    public void setHired(LocalDate hired) {
+        this.hired = hired;
     }
 
     @PrePersist
-    void setHireDate() {
-        if (hireDate == null) {
-            this.hireDate = LocalDate.now();
+    void setHired() {
+        if (hired == null) {
+            this.hired = LocalDate.now();
         }
     }
 
@@ -82,7 +80,7 @@ public class Coder {
 
     @Override
     public String toString() {
-        return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
+        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hired=" + hired
                 + ", salary=" + salary + "]";
     }
 }
