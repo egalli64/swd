@@ -8,65 +8,65 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.swd.dao.Coder;
+import com.example.swd.dao.Employee;
 
 @Controller
 @RequestMapping("/s07")
-public class CoderQueryCtr {
-    private static final Logger log = LogManager.getLogger(CoderQueryCtr.class);
+public class EmployeeQueryCtr {
+    private static final Logger log = LogManager.getLogger(EmployeeQueryCtr.class);
 
-    private CoderQueryRepo repo;
+    private EmployeeQueryRepo repo;
 
-    public CoderQueryCtr(CoderQueryRepo repo) {
+    public EmployeeQueryCtr(EmployeeQueryRepo repo) {
         this.repo = repo;
     }
 
     @GetMapping("/bySalaryRange")
     public String bySalaryRange(@RequestParam double low, @RequestParam double high, Model model) {
-        log.traceEntry("byFirstName");
+        log.traceEntry("bySalaryRange({}, {})", low, high);
 
-        Iterable<Coder> coders = repo.findBySalaryRange(low, high);
-        model.addAttribute("message", "Found: " + coders);
+        Iterable<Employee> entities = repo.findBySalaryRange(low, high);
+        model.addAttribute("message", "Found: " + entities);
 
         return "/s07/result";
     }
 
     @GetMapping("/bySalaryRangeNames")
     public String bySalaryRangeNames(@RequestParam double low, @RequestParam double high, Model model) {
-        log.traceEntry("byFirstName");
+        log.traceEntry("bySalaryRangeNames({}, {})", low, high);
 
-        Iterable<Coder> coders = repo.findBySalaryRangeNames(low, high);
-        model.addAttribute("message", "Found: " + coders);
+        Iterable<Employee> entities = repo.findBySalaryRangeNames(low, high);
+        model.addAttribute("message", "Found: " + entities);
 
         return "/s07/result";
     }
 
     @GetMapping("/withPrefix")
     public String withPrefix(@RequestParam String prefix, Model model) {
-        log.traceEntry("withPrefix");
+        log.traceEntry("withPrefix({})", prefix);
 
-        Iterable<Coder> coders = repo.findByFirstName(prefix);
-        model.addAttribute("message", "Found: " + coders);
+        Iterable<Employee> entities = repo.findByFirstName(prefix);
+        model.addAttribute("message", "Found: " + entities);
 
         return "/s07/result";
     }
 
     @GetMapping("/withInfix")
     public String withInfix(@RequestParam String infix, Model model) {
-        log.traceEntry("withInfix");
+        log.traceEntry("withInfix({})", infix);
 
-        Iterable<Coder> coders = repo.findByFirstNameIn(infix);
-        model.addAttribute("message", "Found: " + coders);
+        Iterable<Employee> entities = repo.findByFirstNameIn(infix);
+        model.addAttribute("message", "Found: " + entities);
 
         return "/s07/result";
     }
 
     @GetMapping("/bySalaryRangeNative")
     public String bySalaryRangeNative(@RequestParam double low, @RequestParam double high, Model model) {
-        log.traceEntry("bySalaryRangeNative");
+        log.traceEntry("bySalaryRangeNative({}, {})", low, high);
 
-        Iterable<Coder> coders = repo.findBySalaryRangeNative(low, high);
-        model.addAttribute("message", "Found: " + coders);
+        Iterable<Employee> entities = repo.findBySalaryRangeNative(low, high);
+        model.addAttribute("message", "Found: " + entities);
 
         return "/s07/result";
     }
