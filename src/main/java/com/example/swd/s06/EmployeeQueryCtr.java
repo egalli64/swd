@@ -1,4 +1,4 @@
-package com.example.swd.s07;
+package com.example.swd.s06;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.dao.Employee;
 
 @Controller
-@RequestMapping("/s07")
+@RequestMapping("/s06")
 public class EmployeeQueryCtr {
     private static final Logger log = LogManager.getLogger(EmployeeQueryCtr.class);
 
@@ -28,7 +28,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findBySalaryRange(low, high);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s07/result";
+        return "/s06/result";
     }
 
     @GetMapping("/bySalaryRangeNames")
@@ -38,7 +38,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findBySalaryRangeNames(low, high);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s07/result";
+        return "/s06/result";
     }
 
     @GetMapping("/withPrefix")
@@ -48,7 +48,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findByFirstName(prefix);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s07/result";
+        return "/s06/result";
     }
 
     @GetMapping("/withInfix")
@@ -58,7 +58,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findByFirstNameIn(infix);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s07/result";
+        return "/s06/result";
     }
 
     @GetMapping("/bySalaryRangeNative")
@@ -68,6 +68,6 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findBySalaryRangeNative(low, high);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s07/result";
+        return "/s06/result";
     }
 }

@@ -1,4 +1,4 @@
-package com.example.swd.s06;
+package com.example.swd.s05;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.dao.Employee;
 
 @Controller
-@RequestMapping("/s06")
+@RequestMapping("/s05")
 public class EmployeeExtraCtr {
     private static final Logger log = LogManager.getLogger(EmployeeExtraCtr.class);
 
@@ -28,7 +28,7 @@ public class EmployeeExtraCtr {
         Iterable<Employee> entities = repo.findByFirstName(name);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s06/result";
+        return "/s05/result";
     }
 
     @GetMapping("/firstNameStarting")
@@ -38,7 +38,7 @@ public class EmployeeExtraCtr {
         Iterable<Employee> entities = repo.findByFirstNameStartingWith(prefix);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s06/result";
+        return "/s05/result";
     }
 
     @GetMapping("/firstNameStartingLastNameContaining")
@@ -49,6 +49,6 @@ public class EmployeeExtraCtr {
         Iterable<Employee> entities = repo.findByFirstNameStartingWithOrLastNameContainingIgnoreCase(first, last);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s06/result";
+        return "/s05/result";
     }
 }
