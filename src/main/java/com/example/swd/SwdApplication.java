@@ -18,7 +18,7 @@ public class SwdApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(PlainRegionCrudRepo repository) {
+    protected CommandLineRunner demo(PlainRegionCrudRepo repository) {
         return args -> repository.findAll().forEach(region -> log.info(region.toString()));
     }
 }

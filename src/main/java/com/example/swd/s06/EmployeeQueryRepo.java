@@ -2,11 +2,9 @@ package com.example.swd.s06;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import com.example.swd.dao.Employee;
 
-@Repository
 public interface EmployeeQueryRepo extends CrudRepository<Employee, Integer> {
     @Query("select e from Employee e where e.salary between ?1 and ?2 order by salary desc, hired desc")
     Iterable<Employee> findBySalaryRange(double low, double high);
