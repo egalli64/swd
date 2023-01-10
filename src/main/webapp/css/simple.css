@@ -1,5 +1,12 @@
-@charset "UTF-8";
+/* 
+    Introduction to Spring Web Data
+    https://github.com/egalli64/swd
+ */
 
 body {
-    background-color: gray;
+    background-color: #fafaee;
+}
+
+h1 {
+    text-align: center;
 }

@@ -1,11 +1,11 @@
 # Spring - Maven
 mvn*
 .mvn/
-
 # Eclipse
 .classpath
 .project
 .settings/
-
+# Generated files
 target/
 bin/
+.dbeaver/
