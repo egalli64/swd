@@ -19,6 +19,7 @@ public class SwdApplication {
 
     @Bean
     protected CommandLineRunner demo(PlainRegionCrudRepo repository) {
+        log.trace("Generating a bean that logs all regions (auto-executed at startup)");
         return args -> repository.findAll().forEach(region -> log.info(region.toString()));
     }
 }
