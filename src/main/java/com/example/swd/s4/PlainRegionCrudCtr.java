@@ -1,4 +1,4 @@
-package com.example.swd.s04;
+package com.example.swd.s4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.dao.Region;
 
 @Controller
-@RequestMapping("/s04")
+@RequestMapping("/s4")
 public class PlainRegionCrudCtr {
     private static final Logger log = LogManager.getLogger(PlainRegionCrudCtr.class);
 
@@ -37,7 +37,7 @@ public class PlainRegionCrudCtr {
             model.addAttribute("message", "Entity _not_ created!");
         }
 
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/rename")
@@ -50,7 +50,7 @@ public class PlainRegionCrudCtr {
             model.addAttribute("message", "Saved: " + edited);
         }, () -> model.addAttribute("message", "No entity found with id " + id));
 
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/check")
@@ -59,7 +59,7 @@ public class PlainRegionCrudCtr {
 
         model.addAttribute("message", String.format("Entity %d %sfound", id, repo.existsById(id) ? "" : "NOT "));
 
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/all")
@@ -68,7 +68,7 @@ public class PlainRegionCrudCtr {
 
         model.addAttribute("message", "Found: " + repo.findAll());
 
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/some")
@@ -77,7 +77,7 @@ public class PlainRegionCrudCtr {
 
         model.addAttribute("message", "Found: " + repo.findAllById(ids));
 
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/count")
@@ -86,7 +86,7 @@ public class PlainRegionCrudCtr {
 
         model.addAttribute("message", String.format("Found %d entities", repo.count()));
 
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/deleteById")
@@ -95,10 +95,10 @@ public class PlainRegionCrudCtr {
 
         try {
             repo.deleteById(id);
-            return "redirect:/s04/check?id=" + id;
+            return "redirect:/s4/check?id=" + id;
         } catch (Exception ex) {
             model.addAttribute("message", "Can't delete entity " + id);
-            return "/s04/result";
+            return "/s4/result";
         }
     }
 
@@ -110,14 +110,14 @@ public class PlainRegionCrudCtr {
         if (opt.isPresent()) {
             try {
                 repo.delete(opt.get());
-                return "redirect:/s04/check?id=" + id;
+                return "redirect:/s4/check?id=" + id;
             } catch (Exception ex) {
                 log.warn("Can't delete entity " + id);
             }
         }
 
         model.addAttribute("message", "Can't delete entity " + id);
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/deleteSome")
@@ -131,7 +131,7 @@ public class PlainRegionCrudCtr {
 
         model.addAttribute("message", "To be deleted: " + regions);
 
-        return "/s04/result";
+        return "/s4/result";
     }
 
     @GetMapping("/deleteAll")
@@ -140,6 +140,6 @@ public class PlainRegionCrudCtr {
 
         repo.deleteAll();
 
-        return "redirect:/s04/count";
+        return "redirect:/s4/count";
     }
 }

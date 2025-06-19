@@ -1,4 +1,4 @@
-package com.example.swd.s04;
+package com.example.swd.s4;
 
 import org.springframework.data.repository.CrudRepository;
 
