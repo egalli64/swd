@@ -9,5 +9,7 @@ import com.example.swd.dao.Country;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country, String> {
-    List<Country> findByRegionId(Integer regionId);
+    List<Country> findByRegionId(Integer id);
+
+    Integer countByRegionId(Integer id);
 }
