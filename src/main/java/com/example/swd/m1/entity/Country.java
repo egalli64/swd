@@ -5,22 +5,21 @@
  */
 package com.example.swd.m1.entity;
 
-import com.example.swd.entity.Region;
-
 /**
  * Entity for Spring JDBC API
  */
 public class Country {
     private String id;
     private String name;
-    private Region region;
+    private Integer regionId;
 
     public Country() {
     }
 
-    public Country(String id, String name) {
+    public Country(String id, String name, Integer regionId) {
         this.id = id;
         this.name = name;
+        this.regionId = regionId;
     }
 
     public String getId() {
@@ -39,16 +38,16 @@ public class Country {
         this.name = name;
     }
 
-    public Region getRegion() {
-        return region;
+    public Integer getRegionId() {
+        return regionId;
     }
 
-    public void setRegion(Region region) {
-        this.region = region;
+    public void setRegionId(Integer regionId) {
+        this.regionId = regionId;
     }
 
     @Override
     public String toString() {
-        return "CountryJdbc [id=" + id + ", name=" + name + ", region=" + region + "]";
+        return "Country [id=" + id + ", name=" + name + ", regionId=" + regionId + "]";
     }
 }
