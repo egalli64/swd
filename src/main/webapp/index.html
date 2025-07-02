@@ -2,14 +2,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spring Data JPA</title>
+<title>Spring and JDBC</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/css/simple.css">
 </head>
 <body>
-    <h1>Spring Data JPA</h1>
+    <h1>Spring and JDBC</h1>
 
-    <h2>Methods from CRUD Repository</h2>
+    <h2>Spring JDBC API</h2>
+
+    <h3>Repository and JdbcTemplate</h3>
+    <ul>
+        <li><a href="/m1/s3/create_region.html">Create a new region</a></li>
+        <li><a href="/m1/s3/rename_region.html">Change name to a region</a></li>
+    </ul>
+
+
+    <h2>Spring Data JPA</h2>
+
+    <h3>Methods from CRUD Repository</h3>
     <ul>
         <li><a href="/s4/create?name=Downbelow">Create a new region</a> (named Downbelow)</li>
         <li><a href="/s4/rename?id=5&name=Upabove">Change name</a> to region 5 (to Upabove)</li>
@@ -23,7 +34,7 @@
         <li><a href="/s4/deleteAll">Delete all region, then count them</a> (it would crash)</li>
     </ul>
 
-    <h2>Query deduced by method name in Repository</h2>
+    <h3>Query deduced by method name in Repository</h3>
     <ul>
         <li><a href="/s5/byFirstName?name=Diana">First name Diana</a></li>
         <li><a href="/s5/firstNameStarting?prefix=D">First name starting by D</a></li>
@@ -31,7 +42,7 @@
                 D or an i/I in the last name</a></li>
     </ul>
 
-    <h2>Query by annotation</h2>
+    <h3>Query by annotation</h3>
     <ul>
         <li><a href="/s6/bySalaryRange?low=4000&high=5000">Salary range</a></li>
         <li><a href="/s6/bySalaryRangeNames?low=4000&high=5000">Salary range</a> (by names)</li>
