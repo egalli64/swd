@@ -1,14 +1,24 @@
-package com.example.swd.entity;
+/**
+ * Introduction to Spring JDBC support
+ * 
+ * https://github.com/egalli64/swd/
+ */
+package com.example.swd.m1.entity;
 
-public class CountryJdbc {
+import com.example.swd.entity.Region;
+
+/**
+ * Entity for Spring JDBC API
+ */
+public class Country {
     private String id;
     private String name;
     private Region region;
 
-    public CountryJdbc() {
+    public Country() {
     }
 
-    public CountryJdbc(String id, String name) {
+    public Country(String id, String name) {
         this.id = id;
         this.name = name;
     }
