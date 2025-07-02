@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.swd.dao.Country;
-import com.example.swd.dao.Region;
+import com.example.swd.entity.Country;
+import com.example.swd.entity.Region;
 import com.example.swd.x1.CountryRepository;
 import com.example.swd.x1.RegionRepository;
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.swd.dao.Region;
+import com.example.swd.entity.Region;
 
 @Controller
 @RequestMapping("/s4")

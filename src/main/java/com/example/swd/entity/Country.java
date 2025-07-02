@@ -1,4 +1,4 @@
-package com.example.swd.dao;
+package com.example.swd.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
