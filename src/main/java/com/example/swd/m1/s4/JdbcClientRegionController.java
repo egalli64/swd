@@ -35,10 +35,11 @@ public class JdbcClientRegionController {
 
         try {
             Region region = repo.findById(id);
-            model.addAttribute("message", "Read region " + region);
+            model.addAttribute("message", "Read " + region);
         } catch (DataAccessException ex) {
-            log.warn(String.format("Can't read region %d", id), ex);
-            model.addAttribute("message", "Entity _not_ read!");
+            String msg = String.format("Can't read region %d", id);
+            log.warn(msg, ex);
+            model.addAttribute("message", msg);
         }
 
         return "/m1/s3/result";
@@ -49,11 +50,12 @@ public class JdbcClientRegionController {
         log.traceEntry("create({})", name);
 
         try {
-            repo.save(new Region(name));
-            model.addAttribute("message", "Created region with name " + name);
+            Region region = repo.save(new Region(name));
+            model.addAttribute("message", "Created " + region);
         } catch (DataAccessException ex) {
-            log.warn("Can't create entity", ex);
-            model.addAttribute("message", "Entity _not_ created!");
+            String msg = String.format("Can't create region %s", name);
+            log.warn(msg, ex);
+            model.addAttribute("message", msg);
         }
 
         return "/m1/s3/result";
@@ -63,13 +65,14 @@ public class JdbcClientRegionController {
     public String update(@RequestParam Integer id, @RequestParam String name, Model model) {
         log.traceEntry("update({}, {})", id, name);
 
+        Region region = new Region(id, name);
         try {
-            Region region = new Region(id, name);
             repo.save(region);
             model.addAttribute("message", "Updated: " + region);
         } catch (DataAccessException ex) {
-            log.warn("Can't update", ex);
-            model.addAttribute("message", "Entity _not_ updated!");
+            String msg = String.format("Can't update %s", region);
+            log.warn(msg, ex);
+            model.addAttribute("message", msg);
         }
 
         return "/m1/s3/result";
