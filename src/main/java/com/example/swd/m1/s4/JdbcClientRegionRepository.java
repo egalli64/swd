@@ -23,6 +23,20 @@ public class JdbcClientRegionRepository {
     }
 
     /**
+     * Get the required region
+     * 
+     * @param id the region id
+     * @return the found region
+     * @throws DataAccessException due to single()
+     */
+    public Region findById(Integer id) {
+        return jdbc.sql("SELECT region_id as id, name FROM Region WHERE region_id = :id") //
+                .param("id", id) //
+                .query(Region.class) //
+                .single();
+    }
+
+    /**
      * Saves a Region entity. The id determines if it is an INSERT (if missing) or
      * an UPDATE. Assuming the DBMS generates the id on its own.
      * <p>

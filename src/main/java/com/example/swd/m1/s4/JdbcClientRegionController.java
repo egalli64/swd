@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +27,21 @@ public class JdbcClientRegionController {
 
     public JdbcClientRegionController(JdbcClientRegionRepository repo) {
         this.repo = repo;
+    }
+
+    @GetMapping("/read/{id}")
+    public String read(@PathVariable Integer id, Model model) {
+        log.traceEntry("read({})", id);
+
+        try {
+            Region region = repo.findById(id);
+            model.addAttribute("message", "Read region " + region);
+        } catch (DataAccessException ex) {
+            log.warn(String.format("Can't read region %d", id), ex);
+            model.addAttribute("message", "Entity _not_ read!");
+        }
+
+        return "/m1/s3/result";
     }
 
     @PostMapping("/create")
