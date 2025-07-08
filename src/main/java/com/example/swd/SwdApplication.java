@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.swd.s4.PlainRegionCrudRepo;
+import com.example.swd.m2.s4.CrudRegionRepository;
 
 @SpringBootApplication
 public class SwdApplication {
@@ -18,7 +18,7 @@ public class SwdApplication {
     }
 
     @Bean
-    protected CommandLineRunner demo(PlainRegionCrudRepo repository) {
+    protected CommandLineRunner demo(CrudRegionRepository repository) {
         log.trace("Generating a bean that logs all regions (auto-executed at startup)");
         return args -> repository.findAll().forEach(region -> log.info(region.toString()));
     }
