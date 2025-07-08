@@ -2,7 +2,7 @@ package com.example.swd.s5;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.example.swd.entity.Employee;
+import com.example.swd.m2.entity.Employee;
 
 public interface EmployeeExtraRepo extends CrudRepository<Employee, Integer> {
     Iterable<Employee> findByFirstName(String name);

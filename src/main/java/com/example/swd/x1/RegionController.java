@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.swd.entity.Region;
+import com.example.swd.m2.entity.Region;
 
 @RestController
 public class RegionController {

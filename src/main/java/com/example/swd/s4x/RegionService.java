@@ -2,8 +2,8 @@ package com.example.swd.s4x;
 
 import org.springframework.stereotype.Service;
 
-import com.example.swd.entity.Country;
-import com.example.swd.entity.Region;
+import com.example.swd.m2.entity.Country;
+import com.example.swd.m2.entity.Region;
 
 @Service
 public class RegionService {

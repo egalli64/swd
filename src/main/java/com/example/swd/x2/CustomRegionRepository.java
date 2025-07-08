@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.swd.entity.Country;
-import com.example.swd.entity.Region;
+import com.example.swd.m2.entity.Country;
+import com.example.swd.m2.entity.Region;
 
 import jakarta.persistence.EntityManager;
 

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.swd.entity.Region;
 import com.example.swd.m1.s3.JdbcRegionController;
+import com.example.swd.m2.entity.Region;
 
 @RestController
 @RequestMapping("/api/regions")

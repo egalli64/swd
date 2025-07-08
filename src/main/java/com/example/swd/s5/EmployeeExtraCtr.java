@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.swd.entity.Employee;
+import com.example.swd.m2.entity.Employee;
 
 @Controller
 @RequestMapping("/s5")
