@@ -103,21 +103,21 @@ public class CrudRegionController {
         }
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam Integer id, Model model) {
-        log.traceEntry("delete");
+    @GetMapping("/findDelete")
+    public String findDelete(@RequestParam Integer id, Model model) {
+        log.traceEntry("findDelete");
 
         Optional<Region> opt = repo.findById(id);
         if (opt.isPresent()) {
             try {
                 repo.delete(opt.get());
-                return "redirect:/m2/s4/check?id=" + id;
+                model.addAttribute("message", "Entity " + id + " deleted");
             } catch (Exception ex) {
                 log.warn("Can't delete entity " + id);
+                model.addAttribute("message", "Can't delete entity " + id);
             }
         }
 
-        model.addAttribute("message", "Can't delete entity " + id);
         return "/m2/s4/result";
     }
 
