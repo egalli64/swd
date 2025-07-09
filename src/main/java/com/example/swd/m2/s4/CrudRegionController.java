@@ -55,8 +55,8 @@ public class CrudRegionController {
     }
 
     @GetMapping("/check")
-    public String check(@RequestParam Integer id, Model model) {
-        log.traceEntry("check");
+    public String exists(@RequestParam Integer id, Model model) {
+        log.traceEntry("exists({})", id);
 
         model.addAttribute("message", String.format("Entity %d %sfound", id, repo.existsById(id) ? "" : "NOT "));
 
