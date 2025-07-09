@@ -92,15 +92,16 @@ public class CrudRegionController {
 
     @GetMapping("/deleteById")
     public String deleteById(@RequestParam Integer id, Model model) {
-        log.traceEntry("deleteById");
-
+        log.traceEntry("deleteById({})", id);
+        
         try {
             repo.deleteById(id);
-            return "redirect:/m2/s4/check?id=" + id;
+            model.addAttribute("message", "Entity " + id + " has been deleted (if it was present)");
         } catch (Exception ex) {
             model.addAttribute("message", "Can't delete entity " + id);
-            return "/m2/s4/result";
         }
+
+        return "/m2/s4/result";
     }
 
     @GetMapping("/findDelete")
