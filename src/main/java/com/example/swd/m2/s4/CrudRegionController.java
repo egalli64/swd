@@ -1,7 +1,7 @@
 package com.example.swd.m2.s4;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -93,7 +93,7 @@ public class CrudRegionController {
     @GetMapping("/deleteById")
     public String deleteById(@RequestParam Integer id, Model model) {
         log.traceEntry("deleteById({})", id);
-        
+
         try {
             repo.deleteById(id);
             model.addAttribute("message", "Entity " + id + " has been deleted (if it was present)");
@@ -106,17 +106,20 @@ public class CrudRegionController {
 
     @GetMapping("/findDelete")
     public String findDelete(@RequestParam Integer id, Model model) {
-        log.traceEntry("findDelete");
+        log.traceEntry("findDelete({})", id);
 
         Optional<Region> opt = repo.findById(id);
         if (opt.isPresent()) {
             try {
                 repo.delete(opt.get());
-                model.addAttribute("message", "Entity " + id + " deleted");
+                model.addAttribute("message", opt.get() + " deleted");
             } catch (Exception ex) {
-                log.warn("Can't delete entity " + id);
-                model.addAttribute("message", "Can't delete entity " + id);
+                String msg = String.format("Can't delete %s", opt.get());
+                log.warn(msg, ex);
+                model.addAttribute("message", msg);
             }
+        } else {
+            model.addAttribute("message", "Can't find entity " + id);
         }
 
         return "/m2/s4/result";
@@ -124,14 +127,20 @@ public class CrudRegionController {
 
     @GetMapping("/deleteSome")
     public String deleteSome(@RequestParam List<Integer> ids, Model model) {
-        log.traceEntry("deleteSome");
+        log.traceEntry("deleteSome({})", ids);
 
-        List<Region> regions = new ArrayList<>();
-        ids.forEach(id -> repo.findById(id).ifPresent(entity -> regions.add(entity)));
+        List<Region> regions = ids.stream() //
+                .filter(Objects::nonNull) //
+                .map(repo::findById) //
+                .flatMap(Optional::stream) //
+                .toList();
 
-        repo.deleteAll(regions);
-
-        model.addAttribute("message", "To be deleted: " + regions);
+        model.addAttribute("message", "Attempt to delete " + regions);
+        try {
+            repo.deleteAll(regions);
+        } catch (Exception ex) {
+            log.error("Failure when deleteSome()", ex);
+        }
 
         return "/m2/s4/result";
     }
@@ -140,8 +149,14 @@ public class CrudRegionController {
     public String deleteAll(Model model) {
         log.traceEntry("deleteAll");
 
-        repo.deleteAll();
+        try {
+            repo.deleteAll();
+            model.addAttribute("message", "All entities deleted");
+        } catch (Exception ex) {
+            log.error("Failure when deleteAll()", ex);
+            model.addAttribute("message", "Can't delete all entities");
+        }
 
-        return "redirect:/m2/s4/count";
+        return "/m2/s4/result";
     }
 }
