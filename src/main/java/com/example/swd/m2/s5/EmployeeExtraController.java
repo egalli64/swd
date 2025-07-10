@@ -1,4 +1,4 @@
-package com.example.swd.s5;
+package com.example.swd.m2.s5;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.m2.entity.Employee;
 
 @Controller
-@RequestMapping("/s5")
-public class EmployeeExtraCtr {
-    private static final Logger log = LogManager.getLogger(EmployeeExtraCtr.class);
+@RequestMapping("/m2/s5")
+public class EmployeeExtraController {
+    private static final Logger log = LogManager.getLogger(EmployeeExtraController.class);
 
-    private EmployeeExtraRepo repo;
+    private EmployeeExtraRepository repo;
 
-    public EmployeeExtraCtr(EmployeeExtraRepo repo) {
+    public EmployeeExtraController(EmployeeExtraRepository repo) {
         this.repo = repo;
     }
 
@@ -28,7 +28,7 @@ public class EmployeeExtraCtr {
         Iterable<Employee> entities = repo.findByFirstName(name);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s5/result";
+        return "/m2/s5/result";
     }
 
     @GetMapping("/firstNameStarting")
@@ -38,7 +38,7 @@ public class EmployeeExtraCtr {
         Iterable<Employee> entities = repo.findByFirstNameStartingWith(prefix);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s5/result";
+        return "/m2/s5/result";
     }
 
     @GetMapping("/firstNameStartingLastNameContaining")
@@ -49,6 +49,6 @@ public class EmployeeExtraCtr {
         Iterable<Employee> entities = repo.findByFirstNameStartingWithOrLastNameContainingIgnoreCase(first, last);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s5/result";
+        return "/m2/s5/result";
     }
 }
