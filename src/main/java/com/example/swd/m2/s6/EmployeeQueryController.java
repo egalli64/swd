@@ -1,4 +1,4 @@
-package com.example.swd.s6;
+package com.example.swd.m2.s6;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.swd.m2.entity.Employee;
 
 @Controller
-@RequestMapping("/s6")
-public class EmployeeQueryCtr {
-    private static final Logger log = LogManager.getLogger(EmployeeQueryCtr.class);
+@RequestMapping("/m2/s6")
+public class EmployeeQueryController {
+    private static final Logger log = LogManager.getLogger(EmployeeQueryController.class);
 
-    private EmployeeQueryRepo repo;
+    private EmployeeQueryRepository repo;
 
-    public EmployeeQueryCtr(EmployeeQueryRepo repo) {
+    public EmployeeQueryController(EmployeeQueryRepository repo) {
         this.repo = repo;
     }
 
@@ -28,7 +28,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findBySalaryRange(low, high);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s6/result";
+        return "/m2/s6/result";
     }
 
     @GetMapping("/bySalaryRangeNames")
@@ -38,7 +38,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findBySalaryRangeNames(low, high);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s6/result";
+        return "/m2/s6/result";
     }
 
     @GetMapping("/withPrefix")
@@ -48,7 +48,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findByFirstName(prefix);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s6/result";
+        return "/m2/s6/result";
     }
 
     @GetMapping("/withInfix")
@@ -58,7 +58,7 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findByFirstNameIn(infix);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s6/result";
+        return "/m2/s6/result";
     }
 
     @GetMapping("/bySalaryRangeNative")
@@ -68,6 +68,6 @@ public class EmployeeQueryCtr {
         Iterable<Employee> entities = repo.findBySalaryRangeNative(low, high);
         model.addAttribute("message", "Found: " + entities);
 
-        return "/s6/result";
+        return "/m2/s6/result";
     }
 }
