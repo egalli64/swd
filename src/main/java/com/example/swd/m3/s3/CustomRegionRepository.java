@@ -1,4 +1,4 @@
-package com.example.swd.x2;
+package com.example.swd.m3.s3;
 
 import java.util.List;
 
@@ -10,18 +10,26 @@ import com.example.swd.m2.entity.Region;
 
 import jakarta.persistence.EntityManager;
 
+/**
+ * This is not a standard JPA repository, the explicit @Transactional annotation
+ * signals that each public method should be managed in a transaction
+ */
 @Repository
 @Transactional
 public class CustomRegionRepository {
     /** Spring takes care of using the entity manager in a thread safe way */
     private final EntityManager entityManager;
 
+    /**
+     * Injecting by constructor, preferred over using the @Autowired on the field
+     */
     public CustomRegionRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     /**
-     * Non-class standard transaction, specific annotation.
+     * Override the class @Transactional setting, here to specify that a read-only
+     * transaction should be used
      */
     @Transactional(readOnly = true)
     public List<Region> findRegionsWithCountryCount() {
