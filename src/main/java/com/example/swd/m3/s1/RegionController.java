@@ -1,4 +1,4 @@
-package com.example.swd.x1;
+package com.example.swd.m3.s1;
 
 import java.util.List;
 

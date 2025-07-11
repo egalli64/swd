@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.swd.m2.entity.Country;
 import com.example.swd.m2.entity.Region;
-import com.example.swd.x1.CountryRepository;
-import com.example.swd.x1.RegionRepository;
+import com.example.swd.m3.s1.CountryRepository;
+import com.example.swd.m3.s1.RegionRepository;
 
 @Service
 public class GeoService {
